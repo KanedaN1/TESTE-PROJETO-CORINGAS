@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Registro de Treinamento - Embraps</title>
+    <style>
+        /* --- Reset e Palheta de Cores baseada na Logo --- */
+        :root {
+            --blue-embraps: #004a99; /* Azul Royal Corporativo da Logo */
+            --blue-light: #e6f0f9; /* Fundo Suave */
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --white: #ffffff;
+            --shadow-subtle: 0 4px 6px rgba(0,0,0,0.06);
+            --shadow-focus: 0 0 10px rgba(0,74,153,0.2);
+            --border-radius-sm: 8px;
+            --border-radius-lg: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent; /* Remove o destaque de toque no mobile */
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--blue-light);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Alinha ao topo em telas longas */
+            min-height: 100vh;
+        }
+
+        /* --- Container Principal (Card) --- */
+        .card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 480px;
+            overflow: hidden;
+        }
+
+        /* --- Área do Logo --- */
+        #logo-container {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        #logo-container img {
+            max-width: 180px; /* Ajuste o tamanho da sua imagem aqui */
+            height: auto;
+            display: inline-block;
+        }
+
+        h2.title {
+            color: var(--blue-embraps);
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        /* --- Campos do Formulário --- */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--blue-embraps);
+            font-size: 0.95rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius-sm);
+            font-size: 16px; /* Evita zoom automático no iOS */
+            color: var(--text-dark);
+            background-color: #fafafa;
+            transition: all 0.2s ease-in-out;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--blue-embraps);
+            background-color: var(--white);
+            box-shadow: var(--shadow-focus);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #b0b0b0;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* --- Botão --- */
+        button#btnEnviar {
+            width: 100%;
+            background-color: var(--blue-embraps);
+            color: var(--white);
+            border: none;
+            padding: 18px;
+            border-radius: var(--border-radius-sm);
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            box-shadow: 0 4px 10px rgba(0,74,153,0.3);
+            margin-top: 15px;
+        }
+
+        button#btnEnviar:hover {
+            background-color: #003d80;
+        }
+
+        button#btnEnviar:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 5px rgba(0,74,153,0.2);
+        }
+
+        button#btnEnviar:disabled {
+            background-color: #a0c4ff;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* --- Ajustes Mobile Específicos --- */
+        @media (max-width: 400px) {
+            .card {
+                padding: 20px;
+                border-radius: var(--border-radius-sm);
+            }
+            #logo-container img {
+                max-width: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div id="logo-container">
+        <img src="logo_embraps.png" alt="Embraps Logo">
+    </div>
+
+    <h2 class="title">Registro de Treinamento - Coringa</h2>
+    
+    <form id="formTreinamento">
+        <div class="form-group">
+            <label>Nome Completo:</label>
+            <input type="text" id="nome" placeholder="Digite seu nome" required>
+        </div>
+
+        <div class="form-group">
+            <label>Data:</label>
+            <input type="date" id="data" required>
+        </div>
+
+        <div class="form-group">
+            <label>RE (Matrícula):</label>
+            <input type="number" id="re" placeholder="Ex: 12345" required>
+        </div>
+
+        <div class="form-group">
+            <label>Posto de Serviço:</label>
+            <input type="text" id="posto" placeholder="Ex: Condomínio Flores" required>
+        </div>
+
+        <div class="form-group">
+            <label>Dificuldade do Posto:</label>
+            <select id="dificuldade">
+                <option value="Facil">😊 Fácil (Rápido e Simples)</option>
+                <option value="Media">😐 Média (Alguns detalhes)</option>
+                <option value="Dificil">😓 Difícil (Muitos procedimentos)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Tempo de Treinamento:</label>
+            <input type="text" id="tempo" placeholder="Ex: 2 horas, Diária">
+        </div>
+
+        <div class="form-group">
+            <label>Observações Adicionais:</label>
+            <textarea id="observacoes" rows="4" placeholder="Detalhes importantes do posto..."></textarea>
+        </div>
+
+        <button type="submit" id="btnEnviar">Enviar Registro</button>
+    </form>
+</div>
+
+<script>
+    // URL gerada pelo Google Apps Script
+    const URL_API = "COLE_AQUI_A_URL_DO_APPS_SCRIPT";
+
+    document.getElementById('formTreinamento').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('btnEnviar');
+        const dataOriginal = btn.innerText;
+
+        btn.innerText = "⏳ Enviando...";
+        btn.disabled = true;
+
+        const dados = {
+            nome: document.getElementById('nome').value,
+            data: document.getElementById('data').value,
+            re: document.getElementById('re').value,
+            posto: document.getElementById('posto').value,
+            dificuldade: document.getElementById('dificuldade').value,
+            tempo: document.getElementById('tempo').value,
+            observacoes: document.getElementById('observacoes').value
+        };
+
+        // Envia para o Google Apps Script
+        fetch(URL_API, {
+            method: 'POST',
+            mode: 'no-cors',
+            cache: 'no-cache',
+            body: JSON.stringify(dados)
+        }).then(() => {
+            alert("✅ Registro enviado com sucesso!");
+            document.getElementById('formTreinamento').reset();
+            btn.innerText = dataOriginal;
+            btn.disabled = false;
+        }).catch(err => {
+            alert("❌ Erro ao enviar. Verifique a conexão.");
+            btn.innerText = dataOriginal;
+            btn.disabled = false;
+            console.error(err);
+        });
+    });
+</script>
+</body>
+</html>
